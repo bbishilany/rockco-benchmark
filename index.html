@@ -1055,6 +1055,159 @@ body {
 </head>
 <body>
 
+<!-- PASSWORD GATE OVERLAY -->
+<style>
+#password-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #141d2b;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+#password-overlay .gate-card {
+  background: #1e2a3a;
+  border-radius: 12px;
+  padding: 48px 40px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  text-align: center;
+}
+#password-overlay .gate-brand {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 32px;
+}
+#password-overlay .gate-brand .gate-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: #ffb84d;
+  border-radius: 50%;
+  margin-left: 4px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+#password-overlay .gate-title {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+#password-overlay .gate-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 32px;
+}
+#password-overlay .gate-input {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  background: #141d2b;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  margin-bottom: 16px;
+}
+#password-overlay .gate-input:focus {
+  border-color: #ffb84d;
+}
+#password-overlay .gate-input::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+#password-overlay .gate-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  background: #ffb84d;
+  color: #141d2b;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#password-overlay .gate-btn:hover {
+  background: #ffc566;
+}
+#password-overlay .gate-error {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-top: 14px;
+  min-height: 20px;
+}
+</style>
+
+<div id="password-overlay">
+  <div class="gate-card">
+    <div class="gate-brand">MILEAGE<span class="gate-dot"></span></div>
+    <div class="gate-title">Corporate Platform Benchmark</div>
+    <div class="gate-subtitle">Rockefeller Capital Management</div>
+    <form id="gate-form" autocomplete="off">
+      <input type="password" class="gate-input" id="gate-password" placeholder="Enter password" autofocus />
+      <button type="submit" class="gate-btn">Access Report</button>
+      <div class="gate-error" id="gate-error"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function() {
+  const EXPECTED_HASH = 'd97db12188839f3406c0ef3290f0e541424af6eef2867cc29e11aa97915dd5de';
+  const SESSION_KEY = 'rockco_benchmark_auth';
+  const overlay = document.getElementById('password-overlay');
+  const mainContent = document.getElementById('main-content');
+
+  function unlock() {
+    overlay.style.display = 'none';
+    mainContent.style.display = '';
+    sessionStorage.setItem(SESSION_KEY, '1');
+  }
+
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    unlock();
+  }
+
+  document.getElementById('gate-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var pw = document.getElementById('gate-password').value;
+    var encoder = new TextEncoder();
+    var data = encoder.encode(pw);
+    var hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    var hashArray = Array.from(new Uint8Array(hashBuffer));
+    var hashHex = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+    if (hashHex === EXPECTED_HASH) {
+      unlock();
+    } else {
+      document.getElementById('gate-error').textContent = 'Incorrect password. Please try again.';
+      document.getElementById('gate-password').value = '';
+      document.getElementById('gate-password').focus();
+    }
+  });
+})();
+</script>
+<!-- END PASSWORD GATE OVERLAY -->
+
+<div id="main-content" style="display:none">
+
 <!-- ================================================================
      PAGE 1: COVER
      ================================================================ -->
@@ -7989,6 +8142,8 @@ body {
         <div class="cta-page__email-pill">wjb@mileagedesign.com</div>
     </div>
 </div>
+
+</div><!-- end #main-content -->
 
 </body>
 </html>
