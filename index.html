@@ -638,6 +638,9 @@ tr:hover td { background: rgba(255,184,77,0.03); }
 .arch-card .tree { font-family: var(--font-mono); font-size: 11px; line-height: 1.7; color: var(--text-mute); }
 .arch-card .tree .node { color: var(--amber); }
 .arch-card .tree .url { color: #059669; }
+.arch-stat { margin-top: 10px; font-size: 12px; color: var(--text-dim); font-weight: 600; }
+.arch-stat__num { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--amber); margin-right: 4px; }
+.arch-card--danger .arch-stat__num { color: #dc2626; }
 
 .yes { color: #16a34a; font-weight: 600; }
 .no { color: #dc2626; font-weight: 600; }
@@ -1133,6 +1136,47 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
   <div class="data-source">Data source: SEMRush &bull; 200 keywords tracked across 5 markets &bull; Generated May 15, 2026</div>
 </section>
 
+<section id="architecture-overview">
+  <div class="eyebrow">The Gap</div>
+  <h2 class="section-title">Site Architecture Comparison</h2>
+  <p class="section-desc">Every competitor that ranks locally has dedicated location pages. Rockefeller has none.</p>
+
+  <div class="arch-grid">
+    <div class="arch-card arch-card--danger">
+      <div class="arch-card__name">Rockefeller</div>
+      <div class="arch-card__domain">rockco.com</div>
+      <div class="arch-card__label">Flat &mdash; No Location Hierarchy</div>
+      <div class="tree"><span class="node">rockco.com/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/team-name/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/team-name/</span><br>&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="url">/team-name/</span><br><span style="color:#dc2626;font-size:10px;margin-top:4px;display:block;">No state, city, or service+city pages</span></div>
+      <div class="arch-stat"><span class="arch-stat__num" style="color:#dc2626;">0</span> location pages</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-card__name">Mariner Wealth</div>
+      <div class="arch-card__domain">marinerwealthadvisors.com</div>
+      <div class="arch-card__label">Hierarchical &mdash; State &rarr; City</div>
+      <div class="tree"><span class="node">/locations/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/locations/michigan/</span><br>&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="url">/locations/michigan/grand-rapids/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/locations/texas/</span><br>&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="url">/locations/texas/dallas/</span></div>
+      <div class="arch-stat"><span class="arch-stat__num">150+</span> location pages</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-card__name">Creative Planning</div>
+      <div class="arch-card__domain">creativeplanning.com</div>
+      <div class="arch-card__label">Metro-Area Pages</div>
+      <div class="tree"><span class="node">/locations/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/locations/grand-rapids-mi/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/locations/chicago-il/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/locations/charlotte-nc/</span><br>&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="url">/locations/dallas-tx/</span></div>
+      <div class="arch-stat"><span class="arch-stat__num">100+</span> location pages</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-card__name">Hightower Advisors</div>
+      <div class="arch-card__domain">hightoweradvisors.com</div>
+      <div class="arch-card__label">Service + City Pages</div>
+      <div class="tree"><span class="node">hightoweradvisors.com/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/our-team/team-name/</span><br>&nbsp;&nbsp;&#9500;&#9472;&#9472; <span class="url">/financial-advisor/city-state/</span><br>&nbsp;&nbsp;&#9492;&#9472;&#9472; <span class="url">/wealth-management/city-state/</span></div>
+      <div class="arch-stat"><span class="arch-stat__num">80+</span> location pages</div>
+    </div>
+  </div>
+
+  <div class="content-card" style="margin-top:20px;">
+    <div class="content-card__body"><p>Google can only rank pages that exist. Rockefeller has <strong>zero</strong> dedicated location pages &mdash; no state rollups, no city pages, no service+city combinations. Competitors have built 80&ndash;150+ indexable pages targeting the same markets. That is the infrastructure gap this benchmark measures.</p></div>
+  </div>
+</section>
+
 <div class="expand-cta" id="expand-cta">
   <button class="expand-btn" id="expand-btn">
     <span class="expand-btn__text">View Full Benchmark</span>
@@ -1238,7 +1282,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 <section id="markets">
   <div class="eyebrow">04 &mdash; Keyword Data</div>
   <h2 class="section-title">Market-by-Market Rankings</h2>
-  <p class="section-desc">40 keywords tracked per market. Lower number = higher ranking. A dash indicates the company does not rank in the top 20.</p>
+  <p class="section-desc">Keywords with measurable search volume per market. Lower number = higher ranking. A dash indicates the company does not rank in the top 20.</p>
 
   <div class="market-tabs-wrap">
     <div class="market-tabs-label">Select a market <span>&darr;</span></div>
@@ -1255,8 +1299,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 <div class="market-table-wrap">
         <div class="market-table-header">
             <h3>Grand Rapids, MI</h3>
-            <p>40 keywords tracked · 92K monthly searches ·
-                rockco.com ranks for 0 of 40 on Page 1</p>
+            <p>12 keywords tracked · 92K monthly searches ·
+                rockco.com ranks for 0 of 12 on Page 1</p>
         </div>
         <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
@@ -1394,286 +1438,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
                     <td class="cell-empty">–</td>
                     <td class="cell-empty">–</td>
                 </tr>
-                <tr>
-                    <td class="col-keyword">401k advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k consulting grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k rollover advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial planner grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best wealth management firms grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business exit planning advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business succession planning financial advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">certified financial planner grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">corporate retirement plan advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">estate planning advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">executive financial planning grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">family office services grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">fee only financial advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for business owners grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for doctors grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for retirees grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">high net worth financial advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">independent financial advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">multi-family office grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">registered investment advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">restricted stock advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">retirement advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">stock option planning advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">tax planning advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top financial advisors grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top rated financial advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">wealth advisor grand rapids</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
             </tbody>
         </table>
         </div>
@@ -1684,8 +1448,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 <div class="market-table-wrap">
         <div class="market-table-header">
             <h3>Chicago, IL</h3>
-            <p>40 keywords tracked · 94K monthly searches ·
-                rockco.com ranks for 0 of 40 on Page 1</p>
+            <p>21 keywords tracked · 94K monthly searches ·
+                rockco.com ranks for 0 of 21 on Page 1</p>
         </div>
         <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
@@ -1913,196 +1677,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
                     <td class="cell-empty">–</td>
                     <td class="cell-empty">–</td>
                 </tr>
-                <tr>
-                    <td class="col-keyword">401k advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k consulting chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k rollover advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial planner chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business exit planning advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business succession planning financial advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">corporate retirement plan advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">estate planning advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">executive financial planning chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for business owners chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for doctors chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for retirees chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">high net worth financial advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">independent financial advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">restricted stock advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">stock option planning advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">tax planning advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top rated financial advisor chicago</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
             </tbody>
         </table>
         </div>
@@ -2113,8 +1687,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 <div class="market-table-wrap">
         <div class="market-table-header">
             <h3>Charlotte, NC</h3>
-            <p>40 keywords tracked · 93K monthly searches ·
-                rockco.com ranks for 0 of 40 on Page 1</p>
+            <p>14 keywords tracked · 93K monthly searches ·
+                rockco.com ranks for 0 of 14 on Page 1</p>
         </div>
         <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
@@ -2272,266 +1846,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
                     <td class="cell-empty">–</td>
                     <td class="cell-empty">–</td>
                 </tr>
-                <tr>
-                    <td class="col-keyword">401k advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k consulting charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k rollover advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial planner charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best wealth management firms charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business exit planning advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business succession planning financial advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">corporate retirement plan advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">estate planning advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">executive financial planning charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">family office services charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">fee only financial advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for business owners charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for doctors charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for retirees charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">high net worth financial advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">independent financial advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">multi-family office charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">registered investment advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">restricted stock advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">stock option planning advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">tax planning advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top financial advisors charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top rated financial advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">wealth advisor charlotte</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
             </tbody>
         </table>
         </div>
@@ -2542,8 +1856,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 <div class="market-table-wrap">
         <div class="market-table-header">
             <h3>Dallas, TX</h3>
-            <p>40 keywords tracked · 94K monthly searches ·
-                rockco.com ranks for 0 of 40 on Page 1</p>
+            <p>22 keywords tracked · 94K monthly searches ·
+                rockco.com ranks for 0 of 22 on Page 1</p>
         </div>
         <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
@@ -2781,186 +2095,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
                     <td class="cell-empty">–</td>
                     <td class="cell-empty">–</td>
                 </tr>
-                <tr>
-                    <td class="col-keyword">401k advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k consulting dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k rollover advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business exit planning advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business succession planning financial advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">corporate retirement plan advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">estate planning advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">executive financial planning dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for business owners dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for doctors dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for retirees dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">high net worth financial advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">independent financial advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">multi-family office dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">restricted stock advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">stock option planning advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">tax planning advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top rated financial advisor dallas</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
             </tbody>
         </table>
         </div>
@@ -2971,8 +2105,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 <div class="market-table-wrap">
         <div class="market-table-header">
             <h3>Jupiter, FL</h3>
-            <p>40 keywords tracked · 92K monthly searches ·
-                rockco.com ranks for 0 of 40 on Page 1</p>
+            <p>11 keywords tracked · 92K monthly searches ·
+                rockco.com ranks for 0 of 11 on Page 1</p>
         </div>
         <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
@@ -3100,296 +2234,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
                     <td class="cell-empty">–</td>
                     <td class="cell-empty">–</td>
                 </tr>
-                <tr>
-                    <td class="col-keyword">401k advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k consulting jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">401k rollover advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best financial planner jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">best wealth management firms jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business exit planning advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">business succession planning financial advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">corporate retirement plan advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">estate planning advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">executive financial planning jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">family office services jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">fee only financial advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">fiduciary financial advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for business owners jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for doctors jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">financial advisor for retirees jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">high net worth financial advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">independent financial advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">investment advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">multi-family office jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">registered investment advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">restricted stock advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">retirement advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">stock option planning advisor</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">tax planning advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top financial advisors jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">top rated financial advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
-                <tr>
-                    <td class="col-keyword">wealth advisor jupiter</td>
-                    <td class="col-vol">0</td>
-                    <td class="cell-prospect cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                    <td class="cell-empty">–</td>
-                </tr>
             </tbody>
         </table>
         </div>
@@ -3467,7 +2311,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
   </div>
 </section>
 
-</div><!-- /detail-sections -->
 
 <section id="investment">
   <div class="eyebrow">08 &mdash; Investment</div>
@@ -3505,6 +2348,9 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
     <p>Scope, phasing, and priority markets get defined in a discovery conversation. Most firms don't launch all locations at once — a phased rollout starting with 5&ndash;10 priority markets is typical, expanding as the infrastructure proves out.</p>
   </div>
 </section>
+
+</div><!-- /detail-sections -->
+
 
 <section id="cta" class="cta-section" style="border:none;">
   <h2>Let&rsquo;s Talk About Your Platform</h2>
