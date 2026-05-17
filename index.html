@@ -823,6 +823,48 @@ tr:hover td { background: rgba(255,184,77,0.03); }
 .stool-footnote { font-size: 13px; color: var(--text); opacity: 0.6; line-height: 1.7; border-left: 2px solid var(--amber); padding-left: 16px; }
 
 /* ================================================================
+   Investment
+   ================================================================ */
+.invest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+.invest-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+}
+.invest-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-mute); margin-bottom: 12px;
+}
+.invest-card__price {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 36px); font-weight: 700;
+    color: var(--amber); line-height: 1.1; margin-bottom: 4px;
+}
+.invest-card__unit {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-mute);
+    letter-spacing: 0.02em; margin-bottom: 16px;
+}
+.invest-card__list { list-style: none; padding: 0; }
+.invest-card__list li {
+    font-size: 13px; color: var(--text); opacity: 0.6;
+    padding: 5px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+}
+.invest-card__list li:last-child { border-bottom: none; }
+.invest-card__list li::before {
+    content: ''; width: 4px; height: 4px;
+    border-radius: 50%; background: var(--amber); flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .invest-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
    CTA
    ================================================================ */
 .cta-section { text-align: center; padding: 72px 24px; }
@@ -959,6 +1001,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
     <a href="#gap-analysis">Gap Analysis</a>
     <a href="#opportunity">Opportunity</a>
     <a href="#recommendations">Recommendations</a>
+    <a href="#investment">Investment</a>
   </div>
 </nav>
 
@@ -3345,6 +3388,43 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 
   <div class="narrative" style="margin-top:16px;">
     <p>Mileage designs, builds, and manages the full location platform: site architecture, page templates, local content, directory listings, and ongoing SEO. The result is a compounding organic asset that drives visibility across every market Rockefeller serves.</p>
+  </div>
+</section>
+
+<section id="investment">
+  <div class="eyebrow">08 &mdash; Investment</div>
+  <h2 class="section-title">What this costs</h2>
+  <p class="section-desc">Ballpark range before a deeper scoping conversation. Covers design, build, ongoing management, and SEO/AIO across the full platform.</p>
+
+  <div class="invest-grid">
+    <div class="invest-card">
+      <div class="invest-card__eyebrow">Corporate Infrastructure</div>
+      <div class="invest-card__price">$3,000</div>
+      <div class="invest-card__unit">per month</div>
+      <ul class="invest-card__list">
+        <li>Location hub design + build</li>
+        <li>State rollup page templates</li>
+        <li>Site architecture + internal linking</li>
+        <li>Ongoing SEO / AIO management</li>
+        <li>Reporting + performance tracking</li>
+      </ul>
+    </div>
+    <div class="invest-card">
+      <div class="invest-card__eyebrow">Per Location</div>
+      <div class="invest-card__price">$325</div>
+      <div class="invest-card__unit">per location / month</div>
+      <ul class="invest-card__list">
+        <li>Dedicated office page design + build</li>
+        <li>Service + city page content</li>
+        <li>Google Business Profile management</li>
+        <li>Directory listings + NAP consistency</li>
+        <li>Local SEO / AIO optimization</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="narrative">
+    <p>Scope, phasing, and priority markets get defined in a discovery conversation. Most firms don't launch all locations at once — a phased rollout starting with 5&ndash;10 priority markets is typical, expanding as the infrastructure proves out.</p>
   </div>
 </section>
 
