@@ -59,7 +59,25 @@
 }
 
 /* ================================================================
-   Dark Mode
+   Semantic Tokens (light mode default)
+   ================================================================ */
+:root {
+    --page-bg:       var(--cream);
+    --page-surface:  var(--cream);
+    --card-bg:       #fff;
+    --card-alt-bg:   var(--cream);
+    --text:          var(--dark-bg);
+    --text-dim:      rgba(20,29,43,0.7);
+    --text-mute:     rgba(20,29,43,0.45);
+    --border:        var(--rule-dark);
+    --header-bg:     rgba(245,243,237,0.92);
+    --nav-bg:        rgba(245,243,237,0.95);
+    --track-bg:      var(--cream-2);
+    --footer-bg:     var(--cream-2);
+}
+
+/* ================================================================
+   Dark Mode (must come after light defaults to win on specificity)
    ================================================================ */
 [data-theme="dark"] {
     --page-bg:       var(--dark-bg);
@@ -84,21 +102,6 @@
 [data-theme="dark"] .gate-error { color: var(--red); }
 [data-theme="dark"] .heatmap-mid { color: var(--yellow); }
 [data-theme="dark"] .scope-national { color: var(--yellow); }
-
-:root {
-    --page-bg:       var(--cream);
-    --page-surface:  var(--cream);
-    --card-bg:       #fff;
-    --card-alt-bg:   var(--cream);
-    --text:          var(--dark-bg);
-    --text-dim:      rgba(20,29,43,0.7);
-    --text-mute:     rgba(20,29,43,0.45);
-    --border:        var(--rule-dark);
-    --header-bg:     rgba(245,243,237,0.92);
-    --nav-bg:        rgba(245,243,237,0.95);
-    --track-bg:      var(--cream-2);
-    --footer-bg:     var(--cream-2);
-}
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 130px; }
