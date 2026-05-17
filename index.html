@@ -1131,6 +1131,20 @@ body {
 #password-overlay .gate-input::placeholder {
   color: rgba(255,255,255,0.3);
 }
+#password-overlay .gate-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  user-select: none;
+}
+#password-overlay .gate-input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
 #password-overlay .gate-btn {
   display: block;
   width: 100%;
@@ -1162,8 +1176,11 @@ body {
     <div class="gate-title">Corporate Platform Benchmark</div>
     <div class="gate-subtitle">Rockefeller Capital Management</div>
     <form id="gate-form" autocomplete="off">
-      <input type="password" class="gate-input" id="gate-password" placeholder="Enter password" autofocus />
-      <button type="submit" class="gate-btn">Access Report</button>
+      <div class="gate-input-wrap">
+        <input type="password" class="gate-input" id="gate-password" placeholder="Enter password" autofocus style="padding-right:60px;margin-bottom:0" />
+        <span class="gate-toggle" id="gate-toggle">Show</span>
+      </div>
+      <button type="submit" class="gate-btn" id="gate-btn">Access Report</button>
       <div class="gate-error" id="gate-error"></div>
     </form>
   </div>
@@ -1175,6 +1192,10 @@ body {
   const SESSION_KEY = 'rockco_benchmark_auth';
   const overlay = document.getElementById('password-overlay');
   const mainContent = document.getElementById('main-content');
+  const input = document.getElementById('gate-password');
+  const btn = document.getElementById('gate-btn');
+  const errorEl = document.getElementById('gate-error');
+  const toggle = document.getElementById('gate-toggle');
 
   function unlock() {
     overlay.style.display = 'none';
@@ -1186,21 +1207,40 @@ body {
     unlock();
   }
 
+  // Show/Hide toggle
+  toggle.addEventListener('click', function() {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    toggle.textContent = show ? 'Hide' : 'Show';
+  });
+
+  // Form submission — SHA-256 comparison
   document.getElementById('gate-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    var pw = document.getElementById('gate-password').value;
-    var encoder = new TextEncoder();
-    var data = encoder.encode(pw);
-    var hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    var hashArray = Array.from(new Uint8Array(hashBuffer));
-    var hashHex = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-    if (hashHex === EXPECTED_HASH) {
-      unlock();
-    } else {
-      document.getElementById('gate-error').textContent = 'Incorrect password. Please try again.';
-      document.getElementById('gate-password').value = '';
-      document.getElementById('gate-password').focus();
+    errorEl.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Verifying...';
+
+    try {
+      var encoder = new TextEncoder();
+      var data = encoder.encode(input.value);
+      var hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      var hashArray = Array.from(new Uint8Array(hashBuffer));
+      var hashHex = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+
+      if (hashHex === EXPECTED_HASH) {
+        unlock();
+      } else {
+        errorEl.textContent = 'Incorrect password. Please try again.';
+        input.value = '';
+        input.focus();
+      }
+    } catch (err) {
+      errorEl.textContent = 'Verification error. Please retry.';
     }
+
+    btn.disabled = false;
+    btn.textContent = 'Access Report';
   });
 })();
 </script>
