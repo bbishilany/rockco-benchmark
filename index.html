@@ -823,6 +823,71 @@ tr:hover td { background: rgba(255,184,77,0.03); }
 .stool-footnote { font-size: 13px; color: var(--text); opacity: 0.6; line-height: 1.7; border-left: 2px solid var(--amber); padding-left: 16px; }
 
 /* ================================================================
+   Overview / Detail Toggle
+   ================================================================ */
+.detail-sections { display: none; }
+.detail-sections.expanded { display: block; }
+
+.nav { display: none; }
+.nav.visible { display: block; }
+
+.expand-cta {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.expand-btn {
+    display: inline-block;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    max-width: 520px;
+    width: 100%;
+}
+
+.expand-btn:hover {
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255,184,77,0.1);
+}
+
+.expand-btn__text {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 8px;
+}
+
+.expand-btn__sub {
+    display: block;
+    font-size: 12px;
+    color: var(--text-mute);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.expand-btn__arrow {
+    display: block;
+    font-size: 20px;
+    color: var(--amber);
+    animation: nudge-down 1.5s ease-in-out infinite;
+}
+
+@keyframes nudge-down {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+.expand-cta.hidden { display: none; }
+
+/* ================================================================
    Investment
    ================================================================ */
 .invest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
@@ -897,8 +962,9 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
    Print
    ================================================================ */
 @media print {
-    .site-header, .nav, .hero-badge, .download-btn, .theme-toggle { display: none !important; }
+    .site-header, .nav, .hero-badge, .download-btn, .theme-toggle, .expand-cta { display: none !important; }
     #password-overlay { display: none !important; }
+    .detail-sections { display: block !important; }
     @page { size: letter; margin: 0.5in; }
     body { background: white !important; color: #141d2b !important; }
     .hero { padding-top: 40px; background: white !important; border: none; }
@@ -1066,6 +1132,16 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 
   <div class="data-source">Data source: SEMRush &bull; 200 keywords tracked across 5 markets &bull; Generated May 15, 2026</div>
 </section>
+
+<div class="expand-cta" id="expand-cta">
+  <button class="expand-btn" id="expand-btn">
+    <span class="expand-btn__text">View Full Benchmark</span>
+    <span class="expand-btn__sub">Domain authority, site architecture, keyword rankings across 5 markets, gap analysis, opportunity sizing, and recommended build</span>
+    <span class="expand-btn__arrow">&darr;</span>
+  </button>
+</div>
+
+<div id="detail-sections" class="detail-sections">
 
 <section id="domain-authority">
   <div class="eyebrow">02 &mdash; Domain Metrics</div>
@@ -3391,6 +3467,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
   </div>
 </section>
 
+</div><!-- /detail-sections -->
+
 <section id="investment">
   <div class="eyebrow">08 &mdash; Investment</div>
   <h2 class="section-title">What this costs</h2>
@@ -3497,6 +3575,21 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(function(l){l.classList.remove('active');if(l.getAttribute('href')==='#'+current) l.classList.add('active');});
   }
   window.addEventListener('scroll',updateNav); updateNav();
+});
+
+/* Expand / collapse detail sections */
+document.getElementById('expand-btn').addEventListener('click', function() {
+  var detail = document.getElementById('detail-sections');
+  var nav = document.querySelector('.nav');
+  var cta = document.getElementById('expand-cta');
+
+  detail.classList.add('expanded');
+  nav.classList.add('visible');
+  cta.classList.add('hidden');
+
+  /* Scroll to the first detail section */
+  var first = detail.querySelector('section');
+  if (first) first.scrollIntoView({ behavior: 'smooth' });
 });
 
 /* Theme toggle — dark by default */
