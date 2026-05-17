@@ -1187,7 +1187,7 @@ body {
 </div>
 
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const EXPECTED_HASH = 'd97db12188839f3406c0ef3290f0e541424af6eef2867cc29e11aa97915dd5de';
   const SESSION_KEY = 'rockco_benchmark_auth';
   const overlay = document.getElementById('password-overlay');
@@ -1199,7 +1199,7 @@ body {
 
   function unlock() {
     overlay.style.display = 'none';
-    mainContent.style.display = '';
+    if (mainContent) mainContent.style.display = '';
     sessionStorage.setItem(SESSION_KEY, '1');
   }
 
@@ -1242,7 +1242,7 @@ body {
     btn.disabled = false;
     btn.textContent = 'Access Report';
   });
-})();
+});
 </script>
 <!-- END PASSWORD GATE OVERLAY -->
 
