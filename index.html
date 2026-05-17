@@ -101,7 +101,7 @@
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+html { scroll-behavior: smooth; scroll-padding-top: 130px; }
 
 body {
     font-family: var(--font-body);
@@ -383,24 +383,21 @@ body {
     background: var(--nav-bg);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
 }
-
-.nav::-webkit-scrollbar { height: 0; }
 
 .nav-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 4px 24px;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 0;
-    min-width: max-content;
 }
 
 .nav a {
     display: block;
-    padding: 12px 16px;
+    padding: 8px 14px;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
@@ -709,10 +706,15 @@ tr:hover td { background: rgba(255,184,77,0.03); }
 .ranking-table { font-size: 12px; }
 .ranking-table th { font-size: 10px; padding: 8px; vertical-align: bottom; }
 .ranking-table td { padding: 6px 8px; text-align: center; font-family: var(--font-mono); font-size: 12px; }
-.ranking-table .col-keyword { text-align: left; font-family: var(--font-body); font-size: 12px; white-space: nowrap; }
+.ranking-table .col-keyword { text-align: left; font-family: var(--font-body); font-size: 12px; white-space: nowrap; position: sticky; left: 0; z-index: 2; background: var(--card-bg); }
+.ranking-table thead .col-keyword { background: var(--card-alt-bg); z-index: 3; }
+.ranking-table .col-keyword::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background: var(--border); }
 .ranking-table .col-vol { text-align: right; font-size: 11px; }
 .ranking-table .col-prospect { text-align: center; font-size: 10px; font-weight: 700; opacity: 1; }
 .ranking-table .col-comp { text-align: center; font-size: 10px; line-height: 1.3; }
+
+.scroll-hint { display: none; font-size: 11px; color: var(--text-mute); font-family: var(--font-mono); margin-bottom: 8px; letter-spacing: 0.02em; }
+.scroll-hint::before { content: '\2190\2192'; margin-right: 6px; color: var(--amber); }
 
 .scope-badge { display: block; font-size: 9px; font-weight: 500; margin-top: 2px; opacity: 0.6; }
 .scope-local { color: #059669; }
@@ -727,15 +729,18 @@ tr:hover td { background: rgba(255,184,77,0.03); }
 /* ================================================================
    Market Tabs
    ================================================================ */
-.market-tabs { display: flex; gap: 4px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 4px; }
+.market-tabs-wrap { margin-bottom: 24px; }
+.market-tabs-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 8px; }
+.market-tabs-label span { color: var(--amber); }
+.market-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; flex-wrap: wrap; }
 
 .market-tab {
-    padding: 8px 16px;
+    padding: 10px 20px;
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius);
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -745,11 +750,34 @@ tr:hover td { background: rgba(255,184,77,0.03); }
     transition: all 0.2s;
 }
 
-.market-tab:hover { border-color: rgba(255,184,77,0.3); color: var(--text); }
-.market-tab.active { background: rgba(255,184,77,0.08); border-color: rgba(255,184,77,0.3); color: var(--amber); }
+.market-tab:hover { border-color: rgba(255,184,77,0.3); color: var(--text); background: rgba(255,184,77,0.04); }
+.market-tab.active { background: rgba(255,184,77,0.1); border-color: var(--amber); color: var(--amber); font-weight: 600; }
 
 .market-panel { display: none; }
 .market-panel.active { display: block; }
+
+/* ================================================================
+   Three-Leg Stool
+   ================================================================ */
+.stool-intro { font-size: 15px; color: var(--text); opacity: 0.7; margin-bottom: 24px; line-height: 1.7; }
+.stool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.stool-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+}
+.stool-card__icon {
+    width: 36px; height: 36px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; margin-bottom: 14px;
+}
+.stool-card__icon--arch { background: rgba(138,180,248,0.12); color: var(--blue); }
+.stool-card__icon--content { background: var(--green-dim); color: var(--green); }
+.stool-card__icon--authority { background: var(--yellow-dim); color: var(--amber); }
+.stool-card h4 { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.stool-card p { font-size: 13px; color: var(--text); opacity: 0.6; line-height: 1.6; }
+.stool-footnote { font-size: 13px; color: var(--text); opacity: 0.6; line-height: 1.7; border-left: 2px solid var(--amber); padding-left: 16px; }
 
 /* ================================================================
    CTA
@@ -796,7 +824,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
     tr { break-inside: avoid; }
     .table-scroll { overflow: visible; }
     .market-panel { display: block !important; }
-    .market-tabs { display: none; }
+    .market-tabs-wrap { display: none; }
+    .scroll-hint { display: none !important; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 }
 
@@ -804,16 +833,32 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
    Responsive
    ================================================================ */
 @media (max-width: 768px) {
-    .hero { padding: 110px 16px 36px; }
-    .hero h1 { font-size: 28px; }
+    body { font-size: 14px; }
+    .hero { padding: 100px 16px 32px; }
+    .hero h1 { font-size: 26px; }
+    .hero-sub { font-size: 16px; }
+    .hero-meta { font-size: 12px; }
     .container { padding: 0 16px; }
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 40px 0; }
+    .section-title { font-size: 22px; }
+    .section-desc { font-size: 14px; }
+    .eyebrow { font-size: 10px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .kpi-value { font-size: 28px; }
+    .kpi-label { font-size: 10px; }
     .arch-grid { grid-template-columns: 1fr; }
     .opp-grid { grid-template-columns: 1fr; }
     .arch-level { flex-direction: column; align-items: flex-start; padding-left: 0 !important; }
     .arch-level__desc { max-width: 100%; }
     .footer-inner { flex-direction: column; gap: 8px; }
     .login-card { padding: 36px 24px; margin: 16px; }
+    .callout-text { font-size: 13px; }
+    .narrative { font-size: 13px; }
+    .content-card__heading { font-size: 14px; }
+    .nav a { padding: 6px 10px; font-size: 10px; }
+    .scroll-hint { display: block; }
+    .stool-grid { grid-template-columns: 1fr; }
+    .market-tabs { flex-wrap: nowrap; }
 }
 </style>
 <script>try{if(localStorage.getItem('rockco-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
@@ -862,7 +907,8 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#exec-summary">Executive Summary</a>
+    <a href="#exec-summary">Summary</a>
+    <a href="#organic-engine">Why It Matters</a>
     <a href="#domain-authority">Domain Authority</a>
     <a href="#architecture">Architecture</a>
     <a href="#markets">Market Rankings</a>
@@ -906,6 +952,32 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
   </div>
 
   <div class="data-source">Data source: SEMRush &bull; 200 keywords tracked across 5 markets &bull; Generated May 15, 2026</div>
+</section>
+
+<section id="organic-engine">
+  <div class="eyebrow">Why This Matters</div>
+  <h2 class="section-title">The organic growth engine</h2>
+  <p class="stool-intro">Think of organic visibility like a three-legged stool.</p>
+
+  <div class="stool-grid">
+    <div class="stool-card">
+      <div class="stool-card__icon stool-card__icon--arch">/</div>
+      <h4>Architecture</h4>
+      <p>Google can only rank pages that exist. No /locations/dallas/ page means nothing to rank for "financial advisor Dallas." Team bios buried three clicks deep don't get picked up.</p>
+    </div>
+    <div class="stool-card">
+      <div class="stool-card__icon stool-card__icon--content">&para;</div>
+      <h4>Content</h4>
+      <p>Each page needs to match how prospects actually search. "Wealth management Dallas" and "retirement planning Dallas" are different queries. One generic office page can't cover 40 service + city combinations.</p>
+    </div>
+    <div class="stool-card">
+      <div class="stool-card__icon stool-card__icon--authority">&check;</div>
+      <h4>Authority</h4>
+      <p>Directory listings, Google Business Profiles, local backlinks, consistent NAP data. Without third-party signals confirming these pages are real, even well-built pages sit on page 3.</p>
+    </div>
+  </div>
+
+  <div class="stool-footnote">Take away any one of these and the others stop working. Architecture without content ranks for nothing. Content without authority gets buried. Authority without architecture has nowhere to point. Rockefeller has the brand. What's missing is the infrastructure underneath it.</div>
 </section>
 
 <section id="domain-authority">
@@ -1005,12 +1077,15 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
   <h2 class="section-title">Market-by-Market Rankings</h2>
   <p class="section-desc">40 keywords tracked per market. Lower number = higher ranking. A dash indicates the company does not rank in the top 20.</p>
 
-  <div class="market-tabs">
-    <button class="market-tab active" data-market="0">Grand Rapids</button>
-    <button class="market-tab" data-market="1">Chicago</button>
-    <button class="market-tab" data-market="2">Charlotte</button>
-    <button class="market-tab" data-market="3">Dallas</button>
-    <button class="market-tab" data-market="4">Jupiter</button>
+  <div class="market-tabs-wrap">
+    <div class="market-tabs-label">Select a market <span>&darr;</span></div>
+    <div class="market-tabs">
+      <button class="market-tab active" data-market="0">Grand Rapids</button>
+      <button class="market-tab" data-market="1">Chicago</button>
+      <button class="market-tab" data-market="2">Charlotte</button>
+      <button class="market-tab" data-market="3">Dallas</button>
+      <button class="market-tab" data-market="4">Jupiter</button>
+    </div>
   </div>
 
   <div class="market-panel active" data-market="0">
@@ -1020,6 +1095,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
             <p>40 keywords tracked · 92K monthly searches ·
                 rockco.com ranks for 0 of 40 on Page 1</p>
         </div>
+        <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
         <table class="ranking-table">
             <thead>
@@ -1448,6 +1524,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
             <p>40 keywords tracked · 94K monthly searches ·
                 rockco.com ranks for 0 of 40 on Page 1</p>
         </div>
+        <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
         <table class="ranking-table">
             <thead>
@@ -1876,6 +1953,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
             <p>40 keywords tracked · 93K monthly searches ·
                 rockco.com ranks for 0 of 40 on Page 1</p>
         </div>
+        <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
         <table class="ranking-table">
             <thead>
@@ -2304,6 +2382,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
             <p>40 keywords tracked · 94K monthly searches ·
                 rockco.com ranks for 0 of 40 on Page 1</p>
         </div>
+        <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
         <table class="ranking-table">
             <thead>
@@ -2732,6 +2811,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
             <p>40 keywords tracked · 92K monthly searches ·
                 rockco.com ranks for 0 of 40 on Page 1</p>
         </div>
+        <div class="scroll-hint">Scroll to see all competitors</div>
         <div class="table-scroll">
         <table class="ranking-table">
             <thead>
@@ -3165,21 +3245,6 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
     <div class="kpi-card"><div class="kpi-value">466K</div><div class="kpi-label">Monthly Searches Rockefeller Misses</div></div>
   </div>
 
-  <div class="content-card">
-    <div class="content-card__heading">Page 1 Win Rate by Competitor</div>
-    <div class="content-card__body">
-      <div class="win-bar-item"><div class="win-bar__name">Dmagazine</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:4%"></div></div><div class="win-bar__label">4%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Mariner Wealth Advisors</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:4%"></div></div><div class="win-bar__label">4%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Chicago Partners Llc</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:4%"></div></div><div class="win-bar__label">4%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Sfmg</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:4%"></div></div><div class="win-bar__label">4%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Serenitywm</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:3%"></div></div><div class="win-bar__label">3%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Morgan Stanley</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:3%"></div></div><div class="win-bar__label">3%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Blue Trust</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:2%"></div></div><div class="win-bar__label">2%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name">Grand Wealth</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill" style="width:2%"></div></div><div class="win-bar__label">2%</div></div></div>
-      <div class="win-bar-item"><div class="win-bar__name win-bar__name--zero">rockco.com</div><div class="win-bar"><div class="win-bar__track"><div class="win-bar__fill win-bar__fill--red" style="width:0%"></div></div><div class="win-bar__label" style="color:#dc2626">0%</div></div></div>
-    </div>
-  </div>
-
   <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;margin:24px 0 16px;">Market-by-Market Summary</h3>
   <div class="table-scroll">
     <table>
@@ -3193,6 +3258,7 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
       </tbody>
     </table>
   </div>
+  <div class="data-source" style="margin-top:12px;">Each row shows one of the 5 markets benchmarked. "rockco.com Page 1" is how many of 40 tracked keywords Rockefeller ranks in the top 10. "Best Competitor Page 1" is the highest count any single competitor achieves. "Volume Rockefeller Misses" is the total monthly search volume for keywords where rockco.com has no Page 1 presence.</div>
 </section>
 
 <section id="opportunity">
@@ -3240,8 +3306,9 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
 
 <section id="cta" class="cta-section" style="border:none;">
   <h2>Let&rsquo;s Talk About Your Platform</h2>
-  <p>This benchmark identified a <strong>structural visibility gap</strong> across 5 markets. The fix isn&rsquo;t tactical &mdash; it&rsquo;s architectural. Mileage builds the location platform, content strategy, and directory infrastructure that turns 140+ offices into 140+ organic search assets.</p>
+  <p>This benchmark identified a <strong>structural visibility gap</strong> across 5 markets. The fix isn&rsquo;t tactical, it&rsquo;s architectural. Mileage builds the location platform, content strategy, and directory infrastructure that turns 140+ offices into 140+ organic search assets.</p>
   <p>If walking through these findings together would be useful, let&rsquo;s find <strong>20 minutes</strong>.</p>
+  <p style="margin-top:8px;"><a href="mailto:wjb@mileagedesign.com" style="color:var(--amber);text-decoration:none;font-weight:600;">wjb@mileagedesign.com</a></p>
 </section>
 
 </main>
