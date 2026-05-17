@@ -14,16 +14,34 @@
    ================================================================ */
 
 :root {
-    --ink:        #141d2b;
-    --ink-2:      #1c2636;
+    /* Canonical dark surface scale — blue over black, always */
+    --dark-bg:       #141d2b;
+    --dark-surface:  #1a2332;
+    --dark-card:     #1e2a3a;
+    --dark-card-alt: #243244;
+    --dark-elevated: #2d3d50;
+
+    /* Legacy aliases */
+    --ink:        var(--dark-bg);
+    --ink-2:      var(--dark-surface);
+
+    /* Light surfaces */
     --cream:      #f5f3ed;
     --cream-2:    #eae6db;
+
+    /* Accent */
     --amber:      #ffb84d;
+    --accent-glow: rgba(255,184,77,0.2);
+    --accent-border: rgba(255,184,77,0.3);
+    --accent-subtle: rgba(255,184,77,0.12);
+
+    /* Utility */
     --blue:       #8ab4f8;
     --mute:       #6b778a;
     --rule:       rgba(245,243,237,0.14);
     --rule-dark:  rgba(20,29,43,0.14);
 
+    /* Status */
     --green:      #34d399;
     --green-dim:  rgba(52,211,153,0.12);
     --red:        #f87171;
