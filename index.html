@@ -973,6 +973,55 @@ footer {
     margin: 24px 0;
 }
 
+/* --- Callout List (skimmable narrative) --- */
+.callout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.callout-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.callout-item--red { border-left-color: var(--red); }
+.callout-item--green { border-left-color: var(--green); }
+
+.callout-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: var(--font-bold);
+    margin-top: 1px;
+}
+
+.callout-icon--red { background: var(--red-bg); color: var(--red); }
+.callout-icon--amber { background: var(--yellow-bg); color: var(--yellow); }
+.callout-icon--green { background: var(--green-bg); color: var(--green); }
+
+.callout-text {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.callout-text strong { color: var(--text); }
+.callout-text .stat { font-family: var(--font-mono); font-weight: var(--font-semibold); color: var(--text); }
+
 /* ================================================================
    Print Styles
    ================================================================ */
@@ -1107,10 +1156,23 @@ footer {
     </div>
   </div>
 
-  <div class="narrative">
-    <p>Rockefeller Capital Management&rsquo;s SEO visibility gap stems from a fundamental structural issue: the complete absence of location-based page architecture. While competitors leverage dedicated location hierarchies to capture local search traffic, Rockefeller operates without /locations/, state pages, or city pages.</p>
-    <p>The impact is measurable across all benchmarked markets. Rockefeller ranks on Page 1 for zero keywords out of 200 tracked terms representing 465,990 monthly searches. Competitors consistently secure 2&ndash;8 Page 1 rankings per market, with top performers like Creative Planning generating 56,375 monthly visits from 36,848 organic keywords.</p>
-    <p>A structured location architecture could unlock significant organic visibility for Rockefeller&rsquo;s 46 US offices. The data demonstrates clear demand exists&mdash;competitors are successfully capturing this traffic through dedicated location pages that Rockefeller currently cannot compete for without the foundational site structure.</p>
+  <div class="callout-list">
+    <div class="callout-item callout-item--red">
+      <div class="callout-icon callout-icon--red">!</div>
+      <div class="callout-text"><strong>No location architecture.</strong> rockco.com has no /locations/ hub, no state pages, no city pages. Competitors all have them.</div>
+    </div>
+    <div class="callout-item">
+      <div class="callout-icon callout-icon--amber">0</div>
+      <div class="callout-text"><strong>Zero Page 1 rankings</strong> out of <span class="stat">200</span> tracked keywords representing <span class="stat">465,990</span> monthly searches across 5 markets.</div>
+    </div>
+    <div class="callout-item">
+      <div class="callout-icon callout-icon--amber">5x</div>
+      <div class="callout-text"><strong>Competitors average 62K organic keywords</strong> vs. Rockefeller&rsquo;s 13K. Creative Planning alone captures <span class="stat">56,375</span> monthly visits from <span class="stat">36,848</span> keywords.</div>
+    </div>
+    <div class="callout-item callout-item--green">
+      <div class="callout-icon callout-icon--green">+</div>
+      <div class="callout-text"><strong>140+ offices with no indexable pages.</strong> A structured location architecture could turn each of Rockefeller&rsquo;s US offices into a ranking asset.</div>
+    </div>
   </div>
 
   <div class="data-source">Data source: SEMRush &bull; 200 keywords tracked across 5 markets &bull; Generated May 15, 2026</div>
@@ -3605,7 +3667,7 @@ footer {
 
   <div class="narrative">
     <p>Competitors are capturing substantial traffic that Rockefeller cannot access&mdash;Creative Planning&rsquo;s 56,375 monthly visits and Mariner Wealth&rsquo;s 29,959 visits demonstrate the revenue potential of local SEO investment. Even smaller competitors like Cresset Capital generate 13,101 monthly visits from location-focused strategies.</p>
-    <p>A Corp &rarr; State &rarr; Office &rarr; City architecture spanning 46 offices would create hundreds of location-specific landing pages. This foundation would enable Rockefeller to compete for the 465,990+ monthly searches currently dominated by competitors, transforming zero local rankings into measurable organic lead generation.</p>
+    <p>A Corp &rarr; State &rarr; Office &rarr; City architecture spanning 140+ offices would create hundreds of location-specific landing pages. This foundation would enable Rockefeller to compete for the 465,990+ monthly searches currently dominated by competitors, transforming zero local rankings into measurable organic lead generation.</p>
   </div>
 </section>
 
@@ -3622,7 +3684,7 @@ footer {
         <div class="arch-level__url">/locations/</div>
       </div>
       <div class="arch-level__arrow">&rarr;</div>
-      <div class="arch-level__desc">National directory of all 46 offices. Internal link equity hub. Targets &ldquo;Rockefeller offices&rdquo; queries.</div>
+      <div class="arch-level__desc">National directory of all 140+ offices. Internal link equity hub. Targets &ldquo;Rockefeller offices&rdquo; queries.</div>
     </div>
 
     <div class="arch-level">
@@ -3670,7 +3732,7 @@ footer {
 <!-- ===== CTA ===== -->
 <section id="cta" class="cta-section" style="border:none;">
   <h2>Let&rsquo;s Talk About Your Platform</h2>
-  <p>This benchmark identified a <strong>structural visibility gap</strong> across 5 markets. The fix isn&rsquo;t tactical &mdash; it&rsquo;s architectural. Mileage builds the location platform, content strategy, and directory infrastructure that turns 46 offices into 46 organic search assets.</p>
+  <p>This benchmark identified a <strong>structural visibility gap</strong> across 5 markets. The fix isn&rsquo;t tactical &mdash; it&rsquo;s architectural. Mileage builds the location platform, content strategy, and directory infrastructure that turns 140+ offices into 140+ organic search assets.</p>
   <p>If walking through these findings together would be useful, let&rsquo;s find <strong>20 minutes</strong>.</p>
 </section>
 
