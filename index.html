@@ -934,9 +934,9 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--border); padd
     <div class="brand"><span class="dot"></span>Mileage</div>
     <div class="header-actions">
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">&#9790;</button>
-      <button class="download-btn" onclick="window.print()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF
+      <button class="download-btn" id="share-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share
       </button>
     </div>
   </div>
@@ -3479,6 +3479,25 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', check);
   });
 })();
+
+/* Share button — native share sheet on iOS/Android, clipboard fallback on desktop */
+document.getElementById('share-btn').addEventListener('click', function() {
+  var data = {
+    title: 'Corporate Visibility Platform Benchmark — Rockefeller Capital Management',
+    text: 'Rockefeller Capital Management organic visibility benchmark across 5 U.S. markets.',
+    url: window.location.href
+  };
+  if (navigator.share) {
+    navigator.share(data).catch(function(){});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      var btn = document.getElementById('share-btn');
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+      setTimeout(function(){ btn.innerHTML = orig; }, 2000);
+    });
+  }
+});
 </script>
 </body>
 </html>
